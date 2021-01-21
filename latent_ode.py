@@ -88,6 +88,7 @@ def sol_recursive(f, z, t):
 
   z_shape = z.shape
   z_t = jnp.concatenate((jnp.ravel(z), jnp.array([t])))
+  return z_t
 
   def g(z_t):
     """
@@ -498,8 +499,7 @@ def run():
         """
         Convenience function for calculating losses separately.
         """
-        params = get_params(_opt_state)
-        preds, rec_r, gen_r, z0_params, nfe = forward(params,
+        params = get_params(_opt_state) preds, rec_r, gen_r, z0_params, nfe = forward(params,
                                                       batch["observed_data"],
                                                       batch["observed_tp"],
                                                       batch["tp_to_predict"],
